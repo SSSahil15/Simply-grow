@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+	background-color: aquamarine;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+}
+
+form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+form button {
+    padding: 10px;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+form .error {
+    color: red;
+    margin-top: 5px;
+}
+h2 {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h2>Sign Up Form</h2>
+
+<form action="">
+ <label for="name">Name:</label>
+ <input type="text" id="name" name="name" required>
+
+ <label for="email">Email:</label>
+ <input type="email" id="email" name="email" required>
+
+ <label for="password">Password:</label>
+ <input type="password" id="password" name="password" required>
+
+ <label for="repeat_password">Repeat Password:</label>
+ <input type="password" id="repeat_password" name="repeat_password" required>
+
+ <label for="dob">Date of Birth:</label>
+ <input type="date" id="dob" name="dob" required>
+
+ <button type="submit">Sign Up</button>
+</form>
+
+<script>
+var form = document.querySelector("form");
+
+form.addEventListener("submit", function(event) {
+ event.preventDefault();
+  
+ var name = document.getElementById("name").value;
+ var email = document.getElementById("email").value;
+ var password = document.getElementById("password").value;
+ var repeatPassword = document.getElementById("repeat_password").value;
+ var dob = document.getElementById("dob").valueAsDate;
+  
+ var today = new Date();
+ var age = today.getFullYear() - dob.getFullYear();
+ var m = today.getMonth() - dob.getMonth();
+ if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+    age--;
+ }
+
+ if (password !== repeatPassword) {
+    alert("Passwords do not match");
+ } else if (age < 18) {
+    alert("You must be at least 18 years old to register");
+ } else {
+    alert("Registration successful");
+ }
+});
+</script>
+
+</body>
+</html>
